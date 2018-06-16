@@ -5,7 +5,7 @@ public class Jugador {
 	private Carta mano[];
 	
 	public Jugador() {
-		
+		mano = new Carta[10];
 	}
 
 	public String getNombre() {
