@@ -5,6 +5,7 @@ public class Mesa {
 	private Jugador jugadores[];
 	
 	public Mesa() {
+		inicializarJugadores();
 	}
 
 	public Repartidor getDealer() {
@@ -23,5 +24,27 @@ public class Mesa {
 		this.jugadores = jugadores;
 	}
 	
+	private void inicializarJugadores() {
+		jugadores = new Jugador[4];
+	}
+	
+	public void agregarJugador(String nombre) throws Exception {
+		Jugador nuevoJugador = new Jugador();
+		nuevoJugador.setNombre(nombre);
+		
+		for(int indiceJugadores = 0; indiceJugadores < jugadores.length;indiceJugadores++) {
+			if(isEmpty(indiceJugadores)) {
+				jugadores[indiceJugadores] = nuevoJugador;
+				break;
+			} else if(indiceJugadores == 3) {
+				throw new Exception("Mesa llena");
+			}
+		}
+		
+	}
+
+	private boolean isEmpty(int indiceJugadores) {
+		return jugadores[indiceJugadores] == null;
+	}
 	
 }
