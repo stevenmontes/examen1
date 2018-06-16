@@ -18,7 +18,7 @@ public class Repartidor {
 		for (int indManoDealer = 0; indManoDealer < manoDealer.length; indManoDealer++) {
 			if (isNotNull(manoDealer, indManoDealer)) {
 				Carta nueva = manoDealer[indManoDealer];
-				addCarta(player, nueva);
+				agregarCartaManoJugador(player, nueva);
 				manoDealer[indManoDealer] = null;
 				break;
 
@@ -29,7 +29,7 @@ public class Repartidor {
 
 	}
 
-	private void addCarta(Jugador player, Carta cartaNueva) {
+	private void agregarCartaManoJugador(Jugador player, Carta cartaNueva) {
 		Carta manoJugador[] = player.getMano();
 		for (int indManoPlayer = 0; indManoPlayer < manoJugador.length; indManoPlayer++) {
 			if (manoJugador[indManoPlayer] == null) {
