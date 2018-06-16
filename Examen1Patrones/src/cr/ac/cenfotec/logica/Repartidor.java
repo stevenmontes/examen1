@@ -5,5 +5,6 @@ public class Repartidor {
 	
 	public Repartidor() throws Exception {
 		maso = new Naipe();
+		maso.combinar();
 	}
 }

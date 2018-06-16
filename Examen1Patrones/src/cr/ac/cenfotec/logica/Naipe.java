@@ -7,17 +7,16 @@ public class Naipe {
 		maso = new Carta[52];
 		setMaso();
 	}
-	
+
 	public void combinar() {
-		int indiceAleatorio = (int) Math.floor(Math.random() * 52);
-		
-		for(int indiceNaipe = 0; indiceNaipe < maso.length; indiceNaipe++) {
+		for (int indiceNaipe = 0; indiceNaipe < maso.length; indiceNaipe++) {
+			int indiceAleatorio = (int) Math.floor(Math.random() * 52);
 			Carta a = maso[indiceNaipe];
 			maso[indiceNaipe] = maso[indiceAleatorio];
 			maso[indiceAleatorio] = a;
 		}
 	}
-	
+
 	public Carta[] getMaso() {
 		return maso;
 	}
@@ -39,7 +38,6 @@ public class Naipe {
 		a.setValor(obtenerValor(indiceNombre));
 		return a;
 	}
-
 
 	private int obtenerValor(int indiceNombreCarta) {
 		int valor;

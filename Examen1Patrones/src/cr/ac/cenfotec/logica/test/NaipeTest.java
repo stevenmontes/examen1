@@ -32,7 +32,7 @@ public class NaipeTest {
 		assertEquals("Gotas", ultimaCarta.getPalo());
 		assertEquals(10, ultimaCarta.getValor());
 	}
-	
+
 	@Test
 	public void testCartasAsFlores() {
 		Carta as = obtenerCarta(13);
@@ -40,7 +40,7 @@ public class NaipeTest {
 		assertEquals("Flores", as.getPalo());
 		assertEquals(1, as.getValor());
 	}
-	
+
 	@Test
 	public void testCartasAsEstrellas() {
 		Carta as = obtenerCarta(26);
@@ -48,7 +48,7 @@ public class NaipeTest {
 		assertEquals("Estrellas", as.getPalo());
 		assertEquals(1, as.getValor());
 	}
-	
+
 	@Test
 	public void testCartasAsGotas() {
 		Carta as = obtenerCarta(39);
@@ -62,4 +62,5 @@ public class NaipeTest {
 		Carta primeraCarta = naipe[indice];
 		return primeraCarta;
 	}
+
 }
