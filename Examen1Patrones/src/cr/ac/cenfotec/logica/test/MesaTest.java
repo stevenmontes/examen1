@@ -65,10 +65,26 @@ public class MesaTest {
 		assertTrue(p1.getMano() != null);
 		assertTrue(p2.getMano() != null);
 	}
+	
+	@Test
+	public void testEmpezarJuego1() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		Jugador p1 = jugadores[0];
+		Jugador p2 = jugadores[1];
+		Jugador p3 = jugadores[2];
+		Jugador p4 = jugadores[3];
+		
+		assertTrue(p1.getMano() != null);
+		assertTrue(p2.getMano() != null);
+		assertTrue(p3.getMano() != null);
+		assertTrue(p4.getMano() != null);
+	}
 
 	private Jugador[] iniciarJuegoBasico() throws Exception {
 		a.agregarJugador("p1");
 		a.agregarJugador("p2");
+		a.agregarJugador("p3");
+		a.agregarJugador("p4");
 		
 		a.empezarAJugar21();
 		
@@ -82,11 +98,90 @@ public class MesaTest {
 		Jugador p1 = jugadores[0];
 		Jugador p2 = jugadores[1];
 		
+		
 		Carta manoP1[] = p1.getMano();
 		Carta manoP2[] = p2.getMano();
 		
 		assertTrue(manoP1[1] != null);
 		assertTrue(manoP2[1] != null);
+	}
+	
+	@Test
+	public void testVerCartas1() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		Jugador p1 = jugadores[0];
+		Jugador p2 = jugadores[1];
+		Jugador p3 = jugadores[2];
+		Jugador p4 = jugadores[3];
+		
+		Carta manoP1[] = p1.getMano();
+		Carta manoP2[] = p2.getMano();
+		Carta manoP3[] = p3.getMano();
+		Carta manoP4[] = p4.getMano();
+		
+		
+		assertTrue(manoP1[1] != null);
+		assertTrue(manoP2[1] != null);
+		assertTrue(manoP3[1] != null);
+		assertTrue(manoP4[1] != null);
+	}
+	
+	@Test
+	public void testFinalizarJuego() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		Jugador p1 = jugadores[0];
+		Jugador p2 = jugadores[1];
+		Jugador p3 = jugadores[2];
+		Jugador p4 = jugadores[3];
+		
+		Carta manoP1[] = p1.getMano();
+		Carta manoP2[] = p2.getMano();
+		Carta manoP3[] = p3.getMano();
+		Carta manoP4[] = p4.getMano();
+		
+		manoP1[0].setValor(2);
+		manoP1[1].setValor(2);
+		
+		manoP2[0].setValor(10);
+		manoP2[1].setValor(10);
+		
+		manoP3[0].setValor(5);
+		manoP3[1].setValor(5);
+		
+		manoP4[0].setValor(9);
+		manoP4[1].setValor(10);
+		
+		p1.setMano(manoP1);
+		p2.setMano(manoP2);
+		p3.setMano(manoP3);
+		p4.setMano(manoP4);
+		
+		Jugador ganadores[] = a.finalizarJuego();
+
+		assertTrue(p2 == ganadores[1]);
+	}
+	
+	@Test
+	public void testFinalizarJuego1() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		Jugador p1 = jugadores[0];
+		Jugador p2 = jugadores[1];
+		
+		Carta manoP1[] = p1.getMano();
+		Carta manoP2[] = p2.getMano();
+		
+		manoP1[0].setValor(9);
+		manoP1[1].setValor(10);
+		
+		manoP2[0].setValor(10);
+		manoP2[1].setValor(10);
+		
+		p1.setMano(manoP1);
+		p2.setMano(manoP2);
+		
+		Jugador ganadores[] = a.finalizarJuego();
+
+		assertTrue(p2 == ganadores[1]);
 	}
 
 }
