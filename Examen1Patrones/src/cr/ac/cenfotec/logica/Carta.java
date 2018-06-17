@@ -8,6 +8,12 @@ public class Carta {
 	public Carta() {
 
 	}
+	
+	public Carta(String nombre, String palo, int valor) {
+		this.nombre = nombre;
+		this.palo = palo;
+		this.valor = valor;
+	}
 
 	public String getNombre() {
 		return nombre;

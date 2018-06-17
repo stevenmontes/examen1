@@ -233,5 +233,53 @@ public class MesaTest {
 		assertTrue(jugadores[0] == null);
 		assertTrue(manoDealer.length == 52);
 	}
+	
+	@Test
+	public void testCambioDeMano() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		
+		Carta ka = new Carta("Ka", "Estrellas", 10);	
+		Carta tres = new Carta("3", "Gotas", 3);
+		Carta mano[] = new Carta[7];
+		mano[0] = ka;
+		mano[1] = tres;
+		
+		Carta dos = new Carta("2", "Gotas", 2);
+		Carta dies = new Carta("10", "Estrellas", 10);
+		Carta manoP2[] = new Carta[7];
+		manoP2[0] = dos;
+		manoP2[1] = dies;
+		
+		jugadores[0].setMano(mano);
+		jugadores[1].setMano(manoP2);
+		
+		mesaJuego.cambiarManoJugador(jugadores[0], jugadores[1]);
+		assertTrue(jugadores[0].getMano() == (manoP2));
+	}
+	
+	@Test
+	public void testCambioDeMano1() throws Exception {
+		Jugador[] jugadores = iniciarJuegoBasico();
+		
+		Carta ka = new Carta("Ka", "Estrellas", 10);	
+		Carta tres = new Carta("3", "Gotas", 3);
+		Carta mano[] = new Carta[7];
+		mano[0] = ka;
+		mano[1] = tres;
+		
+		Carta dos = new Carta("2", "Gotas", 2);
+		Carta dies = new Carta("10", "Estrellas", 10);
+		Carta ocho = new Carta("10", "Estrellas", 10);
+		Carta manoP2[] = new Carta[7];
+		manoP2[0] = dos;
+		manoP2[1] = dies;
+		manoP2[2] = ocho;
+		
+		jugadores[0].setMano(mano);
+		jugadores[1].setMano(manoP2);
+		
+		mesaJuego.cambiarManoJugador(jugadores[0], jugadores[1]);
+		assertTrue(jugadores[0].getMano() == (mano));
+	}
 
 }

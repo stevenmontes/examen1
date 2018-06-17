@@ -126,10 +126,12 @@ public class Mesa {
 	}
 
 	public void empezarPartidaDeRon() throws Exception {
-		deck = new Deck();
 		for (int indCarta = 0; indCarta < 7; indCarta++) {
 			brindarCartasSalteadas();
 		}
+		deck = new Deck();
+		deck.setMaso(dealer.getNaipeDealer());
+
 	}
 
 	private void brindarCartasSalteadas() throws Exception {
@@ -158,17 +160,43 @@ public class Mesa {
 			throw new Exception("No hay jugadores.");
 		}
 	}
-	
+
 	public void agarrarCartaDeck(Jugador solicitante) throws Exception {
 		Carta nueva = deck.agarrarCarta();
 		int numAleatorio = (int) Math.floor(Math.random() * 7);
 		Carta manoJugador[] = solicitante.getMano();
 		manoJugador[numAleatorio] = nueva;
 	}
-	
+
+	public void cambiarManoJugador(Jugador cambiador, Jugador cambiado) {
+		boolean validarCambio = cambiador.verificarCambio();
+
+		if (validarCambio) {
+			if (mismaCantidadCartas(cambiador, cambiado)) {
+				Carta nuevaMano[] = cambiado.getMano();
+				cambiado.setMano(cambiador.getMano());
+				cambiador.setMano(nuevaMano);
+			}
+		}
+	}
+
+	private boolean mismaCantidadCartas(Jugador cambiador, Jugador cambiado) {
+		return obtenerCantidadCartasMano(cambiador.getMano()) == obtenerCantidadCartasMano(cambiado.getMano());
+	}
+
 	public void reset() throws Exception {
 		dealer = new Repartidor();
 		jugadores = new Jugador[4];
+	}
+
+	private int obtenerCantidadCartasMano(Carta[] manoJugador) {
+		int cantCartas = 0;
+		for (int ind = 0; ind < manoJugador.length; ind++) {
+			if (existeCarta(manoJugador, ind)) {
+				cantCartas++;
+			}
+		}
+		return cantCartas;
 	}
 
 }
