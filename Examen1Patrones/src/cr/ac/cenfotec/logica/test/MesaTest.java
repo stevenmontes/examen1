@@ -35,19 +35,13 @@ public class MesaTest {
 
 	@Test(expected = Exception.class)
 	public void testMesaLleno() throws Exception {
-		a.agregarJugador("p1");
-		a.agregarJugador("p2");
-		a.agregarJugador("p3");
-		a.agregarJugador("p4");
+		agregarTodosJugadores();
 		a.agregarJugador("p5");
 	}
 	
 	@Test
 	public void testJugadoresMaximo() throws Exception {
-		a.agregarJugador("p1");
-		a.agregarJugador("p2");
-		a.agregarJugador("p3");
-		a.agregarJugador("p4");
+		agregarTodosJugadores();
 	}
 	
 	@Test(expected = Exception.class)
@@ -81,15 +75,17 @@ public class MesaTest {
 	}
 
 	private Jugador[] iniciarJuegoBasico() throws Exception {
+		agregarTodosJugadores();
+		a.empezarAJugar21();
+		return a.getJugadores();
+	}
+
+	private Jugador[] agregarTodosJugadores() throws Exception {
 		a.agregarJugador("p1");
 		a.agregarJugador("p2");
 		a.agregarJugador("p3");
 		a.agregarJugador("p4");
-		
-		a.empezarAJugar21();
-		
-		Jugador jugadores[] = a.getJugadores();
-		return jugadores;
+		return a.getJugadores();
 	}
 	
 	@Test
@@ -166,6 +162,25 @@ public class MesaTest {
 		
 		Jugador ganadores[] = a.finalizarJuego();
 		assertTrue(jugadores[1] == ganadores[1]);
+	}
+	
+	@Test
+	public void testEmpezarPartidaRon() throws Exception {
+		Jugador[] jugadores = agregarTodosJugadores();
+		
+		Carta manoP1[] = jugadores[0].getMano();
+		Carta manoP2[] = jugadores[1].getMano();
+		Carta manoP3[] = jugadores[2].getMano();
+		Carta manoP4[] = jugadores[3].getMano();
+		
+		a.empezarPartidaDeRon();
+		
+		for(int i = 0; i < 7; i++) {
+			assertTrue(manoP1[i] != null);
+			assertTrue(manoP2[i] != null);
+			assertTrue(manoP3[i] != null);
+			assertTrue(manoP4[i] != null);
+		}
 	}
 
 }

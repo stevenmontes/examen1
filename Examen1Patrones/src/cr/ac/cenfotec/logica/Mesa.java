@@ -37,7 +37,7 @@ public class Mesa {
 			if (!existeJugador(this.jugadores[ind])) {
 				this.jugadores[ind] = nuevoJugador;
 				break;
-				
+
 			} else if (ind == 3) {
 				throw new Exception("Mesa llena");
 			}
@@ -47,71 +47,110 @@ public class Mesa {
 
 	public void empezarAJugar21() throws Exception {
 		if (existeJugador(this.jugadores[0])) {
-			for (int ind = 0; ind < this.jugadores.length; ind++) {
+			for (int ind = 0; ind < obtenerCantJugadores(); ind++) {
 				Jugador actualJugador = this.jugadores[ind];
-				if (existeJugador(actualJugador)) {
-					this.getDealer().darCarta(actualJugador);
-					this.getDealer().darCarta(actualJugador);
-				}
+				this.getDealer().darCarta(actualJugador);
+				this.getDealer().darCarta(actualJugador);
 			}
 		} else {
 			throw new Exception("No hay jugadores agregados.");
 		}
 	}
-	
+
 	private boolean existeJugador(Jugador actualJugador) {
 		return actualJugador != null;
 	}
-	
+
 	private boolean existeCarta(Carta[] manoJugador, int ind) {
 		return manoJugador[ind] != null;
 	}
-	
+
 	public Jugador[] finalizarJuego() {
 		int resultados[] = new int[4];
-		for(int ind = 0; ind < this.jugadores.length;ind++) {
-			if(existeJugador(this.jugadores[ind])) {
-				Carta manoJugador[] = this.jugadores[ind].getMano();	
-				resultados[ind] = sumarValorCartas(manoJugador);
-			}
+		for (int ind = 0; ind < obtenerCantJugadores(); ind++) {
+			Carta manoJugador[] = this.jugadores[ind].getMano();
+			resultados[ind] = sumarValorCartas(manoJugador);
 		}
-		
+
 		Jugador ganadores[] = obtenerGanadores(resultados);
 		return ganadores;
 	}
-	
+
 	private int sumarValorCartas(Carta[] manoJugador) {
 		int resultado = 0;
-		for(int ind = 0; ind < manoJugador.length; ind++) {
-			if(existeCarta(manoJugador, ind))
-			resultado += manoJugador[ind].getValor();
+		for (int ind = 0; ind < manoJugador.length; ind++) {
+			if (existeCarta(manoJugador, ind))
+				resultado += manoJugador[ind].getValor();
 		}
 		return resultado;
 	}
-	
+
 	private Jugador[] obtenerGanadores(int[] resultados) {
 		int mayorPuntaje = obtenerMayorPuntaje(resultados);
-		Jugador [] ganadores = new Jugador[4];
-		
-		for(int ind = 0; ind < resultados.length;ind++) {
-			if(resultados[ind] == mayorPuntaje) {
+		Jugador[] ganadores = new Jugador[4];
+
+		for (int ind = 0; ind < resultados.length; ind++) {
+			if (resultados[ind] == mayorPuntaje) {
 				ganadores[ind] = this.jugadores[ind];
 			}
 		}
-		
+
 		return ganadores;
 	}
 
 	private int obtenerMayorPuntaje(int[] resultados) {
 		int mayorPuntaje = 0;
-		for(int ind = 0; ind < resultados.length; ind++) {
-			if(resultados[ind] <= 22) {
-				if(resultados[ind] > mayorPuntaje) {
+		for (int ind = 0; ind < resultados.length; ind++) {
+			if (resultados[ind] <= 22) {
+				if (resultados[ind] > mayorPuntaje) {
 					mayorPuntaje = resultados[ind];
 				}
 			}
 		}
 		return mayorPuntaje;
+	}
+
+	private int obtenerCantJugadores() {
+		int cantJugadores = 0;
+		for (int ind = 0; ind < this.jugadores.length; ind++) {
+			if (existeJugador(this.jugadores[ind])) {
+				cantJugadores++;
+			}
+		}
+		return cantJugadores;
+	}
+
+	public void empezarPartidaDeRon() throws Exception {
+		for (int ind = 0; ind < 7; ind++) {
+			brindarCartasSalteadas();
+		}
+	}
+
+	private void brindarCartasSalteadas() throws Exception {
+		int cantJugadores = obtenerCantJugadores();
+
+		switch (cantJugadores) {
+		case 1:
+			this.dealer.darCarta(this.jugadores[0]);
+			break;
+		case 2:
+			this.dealer.darCarta(this.jugadores[0]);
+			this.dealer.darCarta(this.jugadores[1]);
+			break;
+		case 3:
+			this.dealer.darCarta(this.jugadores[0]);
+			this.dealer.darCarta(this.jugadores[1]);
+			this.dealer.darCarta(this.jugadores[2]);
+			break;
+		case 4:
+			this.dealer.darCarta(this.jugadores[0]);
+			this.dealer.darCarta(this.jugadores[1]);
+			this.dealer.darCarta(this.jugadores[2]);
+			this.dealer.darCarta(this.jugadores[3]);
+			break;
+		default:
+			break;
+		}
 	}
 
 }
