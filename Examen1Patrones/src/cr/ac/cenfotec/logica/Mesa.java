@@ -3,10 +3,11 @@ package cr.ac.cenfotec.logica;
 public class Mesa {
 	private Repartidor dealer;
 	private Jugador jugadores[];
+	private Deck deck;
 
 	public Mesa() throws Exception {
 		dealer = new Repartidor();
-		inicializarJugadores();
+		jugadores = new Jugador[4];
 	}
 
 	public Repartidor getDealer() {
@@ -25,8 +26,12 @@ public class Mesa {
 		this.jugadores = jugadores;
 	}
 
-	private void inicializarJugadores() {
-		jugadores = new Jugador[4];
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck maso) {
+		this.deck = maso;
 	}
 
 	public void agregarJugador(String nombre) throws Exception {
@@ -121,6 +126,7 @@ public class Mesa {
 	}
 
 	public void empezarPartidaDeRon() throws Exception {
+		deck = new Deck();
 		for (int indCarta = 0; indCarta < 7; indCarta++) {
 			brindarCartasSalteadas();
 		}
@@ -151,6 +157,18 @@ public class Mesa {
 		default:
 			break;
 		}
+	}
+	
+	public void agarrarCartaDeck(Jugador solicitante) throws Exception {
+		Carta nueva = deck.agarrarCarta();
+		int numAleatorio = (int) Math.floor(Math.random() * 7);
+		Carta manoJugador[] = solicitante.getMano();
+		manoJugador[numAleatorio] = nueva;
+	}
+	
+	public void reset() throws Exception {
+		dealer = new Repartidor();
+		jugadores = new Jugador[4];
 	}
 
 }

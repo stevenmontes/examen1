@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cr.ac.cenfotec.logica.Carta;
+import cr.ac.cenfotec.logica.Deck;
 import cr.ac.cenfotec.logica.Jugador;
 import cr.ac.cenfotec.logica.Mesa;
+import cr.ac.cenfotec.logica.Repartidor;
 
 public class MesaTest {
 
@@ -182,5 +184,18 @@ public class MesaTest {
 			assertTrue(manoP4[i] != null);
 		}
 	}
+	
+	@Test
+	public void testReset() throws Exception {
+		a.reset();
+		Repartidor dealer = a.getDealer();
+		Carta manoDealer[] = dealer.getMaso().getMaso();
+		Jugador jugadores[] = a.getJugadores();
+		assertTrue(jugadores[0] == null);
+		assertTrue(manoDealer.length == 52);
+	}
+	
+		
+		
 
 }
