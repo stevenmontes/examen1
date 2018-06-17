@@ -20,13 +20,13 @@ public class DeckTest {
 	@Test
 	public void testAgarrarCarta() throws Exception {
 		maso.agarrarCarta();
-		Carta manoDeck[] = maso.getMaso().getMaso();
+		Carta manoDeck[] = maso.getMaso().getNaipe();
 		assertNull(manoDeck[0]);
 	}
 
 	@Test
 	public void testAgarrarCarta1() throws Exception {
-		Carta manoDeck[] = maso.getMaso().getMaso();
+		Carta manoDeck[] = maso.getMaso().getNaipe();
 		for (int i = 0; i < 20; i++) {
 			maso.agarrarCarta();
 		}
@@ -35,7 +35,7 @@ public class DeckTest {
 	
 	@Test
 	public void testAgarrarCarta2() throws Exception {
-		Carta manoDeck[] = maso.getMaso().getMaso();
+		Carta manoDeck[] = maso.getMaso().getNaipe();
 		for (int i = 0; i < 20; i++) {
 			maso.agarrarCarta();
 		}

@@ -1,15 +1,21 @@
 package cr.ac.cenfotec.logica.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 import cr.ac.cenfotec.logica.Carta;
 
 public class CartaTest {
 	
-	Carta cardA = new Carta();
-	Carta cardB = new Carta();
+	Carta cardA;
+	Carta cardB;
+	
+	@Before
+	public void init() {
+		cardA = new Carta();
+		cardB = new Carta();
+	}
 	
 	public void modificarCarta(Carta a, String nombre, String palo, int valor) throws Exception {
 		a.setNombre(nombre);
@@ -18,10 +24,18 @@ public class CartaTest {
 	}
 	
 	@Test(expected = Exception.class)
-	public void testValor() throws Exception {
-		cardA = new Carta();
+	public void testValorCarta() throws Exception {
 		cardA.setValor(11);
-		assertEquals(11, cardA.getValor());
+	}
+	
+	@Test
+	public void testValorCarta1() throws Exception {
+		cardA.setValor(10);
+	}
+	
+	@Test
+	public void testValorCarta2() throws Exception {
+		cardA.setValor(1);
 	}
 	
 	@Test

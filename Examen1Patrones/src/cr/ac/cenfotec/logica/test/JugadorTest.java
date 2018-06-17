@@ -41,10 +41,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testCambioMano1() throws Exception {
-		Carta ka = new Carta();
-		ka.setNombre("4");
-		ka.setPalo("Estrellas");
-		ka.setValor(4);
+		Carta cuatro = new Carta();
+		cuatro.setNombre("4");
+		cuatro.setPalo("Estrellas");
+		cuatro.setValor(4);
 		
 		Carta tres = new Carta();
 		tres.setNombre("3");
@@ -52,8 +52,29 @@ public class JugadorTest {
 		tres.setValor(3);
 		
 		Carta mano[] = new Carta[7];
-		mano[0] = ka;
+		mano[0] = cuatro;
 		mano[1] = tres;
+		
+		player1.setMano(mano);
+		assertFalse(player1.verificarCambio());
+		
+	}
+	
+	@Test
+	public void testCambioMano2() throws Exception {
+		Carta ka = new Carta();
+		ka.setNombre("Ka");
+		ka.setPalo("Estrellas");
+		ka.setValor(10);
+		
+		Carta jota = new Carta();
+		jota.setNombre("Jota");
+		jota.setPalo("Gotas");
+		jota.setValor(10);
+		
+		Carta mano[] = new Carta[7];
+		mano[0] = ka;
+		mano[1] = jota;
 		
 		player1.setMano(mano);
 		assertFalse(player1.verificarCambio());

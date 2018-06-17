@@ -1,28 +1,28 @@
 package cr.ac.cenfotec.logica;
 
 public class Repartidor {
-	private Naipe maso;
+	private Naipe naipeDealer;
 
 	public Repartidor() throws Exception {
-		maso = new Naipe();
-		maso.combinar();
+		naipeDealer = new Naipe();
+		naipeDealer.combinarNaipe();
 	}
 
-	public Naipe getMaso() {
-		return maso;
+	public Naipe getNaipeDealer() {
+		return naipeDealer;
 	}
 
 	public void darCarta(Jugador player) throws Exception {
-		Carta manoDealer[] = this.getMaso().getMaso();
+		Carta manoDealer[] = this.getNaipeDealer().getNaipe();
 
 		for (int indManoDealer = 0; indManoDealer < manoDealer.length; indManoDealer++) {
-			if (isNotNull(manoDealer, indManoDealer)) {
+			if (existeCarta(manoDealer, indManoDealer)) {
 				Carta nueva = manoDealer[indManoDealer];
 				agregarCartaManoJugador(player, nueva);
 				manoDealer[indManoDealer] = null;
 				break;
 
-			} else if (isNull(manoDealer, indManoDealer)) {
+			} else if (naipeVacio(manoDealer, indManoDealer)) {
 				throw new Exception("Naipe vacio");
 			}
 		}
@@ -39,11 +39,11 @@ public class Repartidor {
 		}
 	}
 
-	private boolean isNull(Carta[] manoDealer, int indManoDealer) {
+	private boolean naipeVacio(Carta[] manoDealer, int indManoDealer) {
 		return indManoDealer == manoDealer.length - 1;
 	}
 
-	private boolean isNotNull(Carta[] manoDealer, int indManoDealer) {
+	private boolean existeCarta(Carta[] manoDealer, int indManoDealer) {
 		return manoDealer[indManoDealer] != null;
 	}
 

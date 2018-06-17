@@ -5,7 +5,7 @@ public class Deck {
 
 	public Deck() throws Exception {
 		maso = new Naipe();
-		maso.combinar();
+		maso.combinarNaipe();
 	}
 
 	public Naipe getMaso() {
@@ -17,7 +17,7 @@ public class Deck {
 	}
 
 	public Carta agarrarCarta() throws Exception {
-		Carta manoDeck[] = this.maso.getMaso();
+		Carta manoDeck[] = this.maso.getNaipe();
 		Carta nueva = new Carta();
 
 		for (int ind = 0; ind < manoDeck.length; ind++) {

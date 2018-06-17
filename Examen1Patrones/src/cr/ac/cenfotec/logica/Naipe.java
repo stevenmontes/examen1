@@ -1,47 +1,47 @@
 package cr.ac.cenfotec.logica;
 
 public class Naipe {
-	private Carta maso[];
+	private Carta naipe[];
 
 	public Naipe() throws Exception {
-		maso = new Carta[52];
-		setMaso();
+		naipe = new Carta[52];
+		setNaipe();
 	}
 
-	public void combinar() {
-		for (int indiceNaipe = 0; indiceNaipe < maso.length; indiceNaipe++) {
-			int indiceAleatorio = (int) Math.floor(Math.random() * 52);
-			Carta a = maso[indiceNaipe];
-			maso[indiceNaipe] = maso[indiceAleatorio];
-			maso[indiceAleatorio] = a;
+	public void combinarNaipe() {
+		for (int indNaipe = 0; indNaipe < naipe.length; indNaipe++) {
+			int indAleatorio = (int) Math.floor(Math.random() * 52);
+			Carta nuevaCarta = naipe[indNaipe];
+			naipe[indNaipe] = naipe[indAleatorio];
+			naipe[indAleatorio] = nuevaCarta;
 		}
 	}
 
-	public Carta[] getMaso() {
-		return maso;
+	public Carta[] getNaipe() {
+		return naipe;
 	}
 
-	private void setMaso() throws Exception {
-		int indiceNaipe = 0;
-		for (int indicePaloCarta = 0; indicePaloCarta < 4; indicePaloCarta++) {
-			for (int indiceValorCarta = 0; indiceValorCarta < 13; indiceValorCarta++) {
-				Carta a = obtenerCarta(indicePaloCarta, indiceValorCarta);
-				maso[indiceNaipe++] = a;
+	private void setNaipe() throws Exception {
+		int indNaipe = 0;
+		for (int indPaloCarta = 0; indPaloCarta < 4; indPaloCarta++) {
+			for (int indValorCarta = 0; indValorCarta < 13; indValorCarta++) {
+				Carta nuevaCarta = obtenerCarta(indPaloCarta, indValorCarta);
+				naipe[indNaipe++] = nuevaCarta;
 			}
 		}
 	}
 
-	private Carta obtenerCarta(int indicePalo, int indiceNombre) throws Exception {
-		Carta a = new Carta();
-		a.setNombre(obtenerNombre(indiceNombre));
-		a.setPalo(obtenerPalo(indicePalo));
-		a.setValor(obtenerValor(indiceNombre));
-		return a;
+	private Carta obtenerCarta(int indPaloCarta, int indNombreCarta) throws Exception {
+		Carta nuevaCarta = new Carta();
+		nuevaCarta.setNombre(obtenerNombre(indNombreCarta));
+		nuevaCarta.setPalo(obtenerPalo(indPaloCarta));
+		nuevaCarta.setValor(obtenerValor(indNombreCarta));
+		return nuevaCarta;
 	}
 
-	private int obtenerValor(int indiceNombreCarta) {
+	private int obtenerValor(int indNombreCarta) {
 		int valor;
-		switch (indiceNombreCarta) {
+		switch (indNombreCarta) {
 		case 0:
 			valor = 1;
 			break;
@@ -76,9 +76,9 @@ public class Naipe {
 		return valor;
 	}
 
-	private String obtenerPalo(int indicePaloCarta) {
+	private String obtenerPalo(int indPaloCarta) {
 		String palo;
-		switch (indicePaloCarta) {
+		switch (indPaloCarta) {
 		case 0:
 			palo = "Escudos";
 			break;
@@ -99,9 +99,9 @@ public class Naipe {
 		return palo;
 	}
 
-	private String obtenerNombre(int indiceNombreCarta) {
+	private String obtenerNombre(int indNombreCarta) {
 		String nombre;
-		switch (indiceNombreCarta) {
+		switch (indNombreCarta) {
 		case 0:
 			nombre = "As";
 			break;

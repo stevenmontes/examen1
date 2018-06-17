@@ -155,7 +155,7 @@ public class Mesa {
 			this.dealer.darCarta(this.jugadores[3]);
 			break;
 		default:
-			break;
+			throw new Exception("No hay jugadores.");
 		}
 	}
 	

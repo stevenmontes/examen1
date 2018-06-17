@@ -23,7 +23,7 @@ public class RepartidorTest {
 		Jugador player = new Jugador();
 		dealer.darCarta(player);
 		Carta manoJugador[] = player.getMano();
-		Carta naipeDealer[] = dealer.getMaso().getMaso();
+		Carta naipeDealer[] = dealer.getNaipeDealer().getNaipe();
 		assertNull(naipeDealer[0]);
 		assertTrue(manoJugador[0] != null);
 
@@ -35,28 +35,31 @@ public class RepartidorTest {
 		dealer.darCarta(player);
 		dealer.darCarta(player);
 		Carta manoJugador[] = player.getMano();
-		Carta naipeDealer[] = dealer.getMaso().getMaso();
+		Carta naipeDealer[] = dealer.getNaipeDealer().getNaipe();
 		assertNull(naipeDealer[1]);
 		assertTrue(manoJugador[1] != null);
 
 	}
 
 	@Test
-	public void testDarTerceraCarta() throws Exception {
+	public void testDarCarta() throws Exception {
 		Jugador player = new Jugador();
-		dealer.darCarta(player);
-		dealer.darCarta(player);
-		dealer.darCarta(player);
+		
+		for(int i = 0; i < 5; i++) {
+			dealer.darCarta(player);
+		}
+		
 		Carta manoJugador[] = player.getMano();
-		Carta naipeDealer[] = dealer.getMaso().getMaso();
-		assertNull(naipeDealer[2]);
-		assertTrue(manoJugador[2] != null);
+		Carta naipeDealer[] = dealer.getNaipeDealer().getNaipe();
+		
+		assertNull(naipeDealer[4]);
+		assertTrue(manoJugador[3] != null);
 
 	}
 
 	@Test(expected = Exception.class)
 	public void testNaipeVacio() throws Exception {
-		Carta naipeDealer[] = dealer.getMaso().getMaso();
+		Carta naipeDealer[] = dealer.getNaipeDealer().getNaipe();
 		for (int i = 0; i < naipeDealer.length + 1; i++) {
 			Jugador p1 = new Jugador();
 			dealer.darCarta(p1);

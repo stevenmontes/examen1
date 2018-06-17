@@ -58,7 +58,7 @@ public class NaipeTest {
 	}
 
 	private Carta obtenerCarta(int indice) {
-		Carta naipe[] = p.getMaso();
+		Carta naipe[] = p.getNaipe();
 		Carta primeraCarta = naipe[indice];
 		return primeraCarta;
 	}
