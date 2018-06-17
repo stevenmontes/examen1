@@ -121,7 +121,7 @@ public class Mesa {
 	}
 
 	public void empezarPartidaDeRon() throws Exception {
-		for (int ind = 0; ind < 7; ind++) {
+		for (int indCarta = 0; indCarta < 7; indCarta++) {
 			brindarCartasSalteadas();
 		}
 	}
